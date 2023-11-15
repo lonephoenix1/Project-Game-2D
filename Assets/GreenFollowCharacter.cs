@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowCharacter : MonoBehaviour
+public class GreenFollowCharacter : MonoBehaviour
 {
     public Transform targetCharacter; // Referencja do postaci, za któr¹ pod¹¿amy
     public float moveSpeed = 3.0f;
