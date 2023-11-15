@@ -14,14 +14,14 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    
+
     void Update()
     {
         movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
         if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
         {
-            rb.velocity = Vector3.zero; 
+            rb.velocity = Vector3.zero;
         }
     }
 
