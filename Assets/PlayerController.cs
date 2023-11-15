@@ -6,43 +6,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float MaxSpeed = 10f;
-    [SerializeField] private float stopForce = 10f;
-    [SerializeField] GameObject prefab;
+    public float moveSpeed = 5f;
 
-    private Rigidbody rb;
-    private Vector3 movementDirection;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    public Rigidbody2D rb;
+    public Camera cam;
 
-    
+    Vector2 movement;
+    Vector2 mousePos;
+   
     void Update()
     {
-        movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
-        {
-            rb.velocity = Vector3.zero; 
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Shoot();
-        }
-
-    }
-    void Shoot() 
-    {
-        GameObject pocisk = Instantiate(prefab, transform.position, Quaternion.identity);
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
     private void FixedUpdate()
     {
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        if (rb.velocity.magnitude < MaxSpeed)
-        {
-            rb.AddForce(movementDirection * movementSpeed);
-        }
+        //Vector2 lookDir = mousePos - rb.position;
+        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg -90f;
+        //rb.rotation = angle;
+
     }
+
 }
