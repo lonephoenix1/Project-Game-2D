@@ -16,14 +16,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    
+
     void Update()
     {
         movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f);
 
         if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
         {
-            rb.velocity = Vector3.zero; 
+            rb.velocity = Vector3.zero;
         }
 
         anim.SetBool("walk", movementDirection.x != 0);
