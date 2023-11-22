@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movementDirection;
     private Animator anim;
     private SpriteRenderer rbSprite;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,9 +29,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
 
-        anim.SetBool("walk", movementDirection.x != 0);
-        anim.SetBool("walk_up", movementDirection.y > 0.1f);
-
         if (Input.GetAxis("Horizontal") < 0)
         {
             rbSprite.flipX = true;
@@ -39,6 +37,10 @@ public class PlayerController : MonoBehaviour
         {
              rbSprite.flipX = false;
         }
+
+        anim.SetFloat("Horizontal", movementDirection.x);
+        anim.SetFloat("Vertical", movementDirection.y);
+        anim.SetFloat("Speed", movementDirection.sqrMagnitude);
     }
 
     private void FixedUpdate()
