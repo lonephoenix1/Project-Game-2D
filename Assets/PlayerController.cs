@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 movementDirection;
     private Animator anim;
+    private SpriteRenderer rbSprite;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        rbSprite = GetComponent<SpriteRenderer>();
     }
 
 
@@ -28,6 +30,15 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("walk", movementDirection.x != 0);
         anim.SetBool("walk_up", movementDirection.y > 0.1f);
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            rbSprite.flipX = true;
+        }
+        else
+        {
+             rbSprite.flipX = false;
+        }
     }
 
     private void FixedUpdate()
