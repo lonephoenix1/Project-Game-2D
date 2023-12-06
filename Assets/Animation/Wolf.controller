@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1102 &-4366196069934705306
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wolf_Movement
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 9126314107419065993}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-402050356639174459
 AnimatorState:
   serializedVersion: 6
@@ -34,7 +60,13 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Wolf
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: Blend
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -48,6 +80,32 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1102 &1177720917388810526
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: walk_right_wolf
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: dd41ba3954a365542a9db02b537613d9, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1447266320792756872
 AnimatorState:
   serializedVersion: 6
@@ -74,6 +132,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &2989211910430176146
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: walk_down_wolf
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 0e2852b9dbf0f404aa23ff2b9d265ea9, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &8121892410126875256
 AnimatorStateMachine:
   serializedVersion: 6
@@ -85,13 +169,22 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -402050356639174459}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 260, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1447266320792756872}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: 800, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8756863517575432124}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 740, y: 200, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2989211910430176146}
+    m_Position: {x: 750, y: 160, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1177720917388810526}
+    m_Position: {x: 510, y: 200, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4366196069934705306}
+    m_Position: {x: 260, y: 90, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -128,3 +221,18 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!206 &9126314107419065993
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blend Tree
+  m_Childs: []
+  m_BlendParameter: Blend
+  m_BlendParameterY: Blend
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
