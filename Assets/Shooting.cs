@@ -28,6 +28,35 @@ public class NewBehaviourScript : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if (bulletDirection.y >= 0) //gora
+        {
+            bullet.transform.Rotate(0, 0, 0);
+        }
+        if (bulletDirection.y >= 0 || bulletDirection.x >= 0)
+        {
+            bullet.transform.Rotate(0, 0, -45);
+        }
+        if (bulletDirection.y >= 0 || bulletDirection.x <= 0) 
+        {
+            bullet.transform.Rotate(0, 0, 45);
+        }
+        if (bulletDirection.x >= 0)//prawo
+        {
+            bullet.transform.Rotate(0, 0, 90);
+        }
+        if (bulletDirection.y <= 0 || bulletDirection.x >= 0)
+        {
+            bullet.transform.Rotate(0, 0, 45);
+        }
+        if (bulletDirection.x <= 0)//lewo
+        {
+            bullet.transform.Rotate(0, 0, 90);
+        }
+        if (bulletDirection.y <= 0 || bulletDirection.x <= 0) 
+        {
+            bullet.transform.Rotate(0, 0, -45);
+        }
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(bulletDirection *  bulletForce ,ForceMode2D.Impulse);
         StartCoroutine(SelfDestruct(bullet));
