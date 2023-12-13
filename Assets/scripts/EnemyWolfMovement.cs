@@ -18,6 +18,27 @@ public class EnemyWolfMovement : MonoBehaviour
         rbSprite = GetComponent<SpriteRenderer>();
     }
 
+    Vector2 GetEnemyMovementVector()
+    {
+        if (targetCharacter != null)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, targetCharacter.position);
+
+            // Sprawdzamy, czy postaæ jest w zasiêgu
+            if (distanceToTarget <= detectionRadius)
+            {
+                // Obliczamy kierunek ruchu
+                Vector3 targetPosition = targetCharacter.position;
+                Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+                // Zwracamy wektor ruchu przeciwnika
+                return new Vector2(moveDirection.x, moveDirection.y);
+            }
+        }
+
+        // Jeœli przeciwnik nie porusza siê, zwracamy wektor zerowy
+        return Vector2.zero;
+    }
 
     void Update()
     {
@@ -37,26 +58,24 @@ public class EnemyWolfMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
-        {
-            rb.velocity = Vector3.zero;
-        }
+        Vector2 enemyMovement = GetEnemyMovementVector();
 
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            rbSprite.flipX = true;
-        }
-        else
-        {
-            rbSprite.flipX = false;
-        }
+        animator.SetFloat("Horizontal", enemyMovement.x);
+        animator.SetFloat("Vertical", enemyMovement.y);
+        animator.SetFloat("speed", enemyMovement.sqrMagnitude);
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("speed", movement.sqrMagnitude);
+        if (enemyMovement != Vector2.zero)
+        {
+            // Ustawiamy flipX w zale¿noœci od kierunku ruchu
+            if (enemyMovement.x < 0)
+            {
+                rbSprite.flipX = true;
+            }
+            else
+            {
+                rbSprite.flipX = false;
+            }
+        }
 
     }
 }
